@@ -12,8 +12,7 @@ class BinarySearchTree {
             this.key = key;
             this.value = value;
         } else if (key < this.key) {
-
-        /* If the tree already exists, then start at the root, 
+            /* If the tree already exists, then start at the root, 
            and compare it to the key you want to insert.
            If the new key is less than the node's key 
            then the new node needs to live in the left-hand branch */
@@ -24,7 +23,7 @@ class BinarySearchTree {
             if (this.left == null) {
                 this.left = new BinarySearchTree(key, value, this);
             } else {
-            /* If the node has an existing left child, 
+                /* If the node has an existing left child, 
                then we recursively call the `insert` method 
                so the node is added further down the tree */
                 this.left.insert(key, value);
@@ -46,14 +45,14 @@ class BinarySearchTree {
         if (this.key == key) {
             return this.value;
         } else if (key < this.key && this.left) {
-        /* If the item you are looking for is less than the root 
+            /* If the item you are looking for is less than the root 
            then follow the left child.
            If there is an existing left child, 
            then recursively check its left and/or right child
            until you find the item */
             return this.left.find(key);
         } else if (key > this.key && this.right) {
-        /* If the item you are looking for is greater than the root 
+            /* If the item you are looking for is greater than the root 
            then follow the right child.
            If there is an existing right child, 
            then recursively check its left and/or right child
@@ -74,15 +73,15 @@ class BinarySearchTree {
                 this.value = successor.value;
                 successor.remove(successor.key);
             } else if (this.left) {
-            /* If the node only has a left child, 
+                /* If the node only has a left child, 
                then you replace the node with its left child */
                 this._replaceWith(this.left);
             } else if (this.right) {
-            /* And similarly if the node only has a right child 
+                /* And similarly if the node only has a right child 
                then you replace it with its right child */
                 this._replaceWith(this.right);
             } else {
-            /* If the node has no children then
+                /* If the node has no children then
                simply remove it and any references to it 
                by calling "this._replaceWith(null)" */
                 this._replaceWith(null);
@@ -97,30 +96,45 @@ class BinarySearchTree {
     }
 }
 
-let BTS = new BinarySearchTree();
-BTS.insert(3);
-BTS.insert(1);
-BTS.insert(4);
-BTS.insert(6);
-BTS.insert(9);
-BTS.insert(2);
-BTS.insert(5);
-BTS.insert(7);
+//3. Create a BST Class
+let BST = new BinarySearchTree();
+BST.insert(3);
+BST.insert(1);
+BST.insert(4);
+BST.insert(6);
+BST.insert(9);
+BST.insert(2);
+BST.insert(5);
+BST.insert(7);
 
-let otherBTS = new BinarySearchTree();
-//not correct, look at what Juan sent on slack
-otherBTS.insert('e');
-otherBTS.insert('a');
-otherBTS.insert('s');
-otherBTS.insert('y');
-otherBTS.insert('q');
-otherBTS.insert('u');
-otherBTS.insert('e');
-otherBTS.insert('s');
-otherBTS.insert('t');
-otherBTS.insert('i');
-otherBTS.insert('o');
-otherBTS.insert('n');
+//letters have a numeric value. you can call in javascript
+//“A”.charCodeAt() to tell you the numeric value.
+// console.log('E'.charCodeAt())
+// console.log('A'.charCodeAt())
+// console.log('S'.charCodeAt())
+// console.log('Y'.charCodeAt())
+// console.log('Q'.charCodeAt())
+// console.log('U'.charCodeAt())
+// console.log('E'.charCodeAt())
+// console.log('S'.charCodeAt())
+// console.log('T'.charCodeAt())
+// console.log('I'.charCodeAt())
+// console.log('O'.charCodeAt())
+// console.log('N'.charCodeAt())
+
+let otherBST = new BinarySearchTree();
+otherBST.insert(69, 'E');
+otherBST.insert(65, 'A');
+otherBST.insert(83, 'S');
+otherBST.insert(89, 'Y');
+otherBST.insert(81, 'Q');
+otherBST.insert(85, 'U');
+otherBST.insert(69, 'E');
+otherBST.insert(83, 'S');
+otherBST.insert(84, 'T');
+otherBST.insert(73, 'I');
+otherBST.insert(79, 'O');
+otherBST.insert(78, 'N');
 
 function tree(t) {
     if (!t) {
@@ -129,12 +143,22 @@ function tree(t) {
     return tree(t.left) + t.value + tree(t.right);
 }
 
-//console.log(BTS);
-console.log(otherBTS)
+//console.log(BST);
+console.log(otherBST);
 
-// - Create a binary search tree called BST and insert
-// 3,1,4,6,9,2,5,7 into your tree. Compare your result with
-// the result from the 1st exercise.
-// - Create a binary search tree called BST and insert
-// E A S Y Q U E S T I O N into your tree. Compare your
-// result with the result from the 1st exercise.
+//5. Height of a BST
+function BSTHeight(tree) {
+    if (!tree) {
+        return 0;
+    } else {
+        let left = BSTHeight(tree.left);
+        let right = BSTHeight(tree.right);
+
+        if (left > right) {
+            return left + 1;
+        } else return right + 1;
+    }
+}
+
+console.log(BSTHeight(otherBST));
+console.log(BSTHeight(BST));

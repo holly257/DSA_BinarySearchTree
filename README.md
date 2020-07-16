@@ -5,12 +5,10 @@
     - Draw the BST with the keys - E A S Y Q U E S T I O N
 2. Remove the root
     - Show how the above trees would look like if you deleted the root of each tree. (Draw the trees, no coding needed here.)
-
 3. Create a BST class
     - Walk through the binary search tree code in the curriculum and understand it well. Then write a BinarySearchTree class with its core functions (insert(), remove(), find()) from scratch.
     - Create a binary search tree called BST and insert 3,1,4,6,9,2,5,7 into your tree. Compare your result with the result from the 1st exercise.
     - Create a binary search tree called BST and insert E A S Y Q U E S T I O N into your tree. Compare your result with the result from the 1st exercise.
-
 4. What does this program do?
     - Without running this code in your code editor, explain what the following program does. 
     - Show with an example the result of executing this program. 
@@ -23,11 +21,9 @@
     }
     - returns the sum of all the values in the tree
     - runtime: linear O(n)
-
-#### In Progress
-3. revisit 'easyquestion'
 5. Height of a BST
     - Write an algorithm to find the height of a binary search tree. What is the time complexity of your algorithm?
+#### In Progress
 #### Next
 6. Is it a BST?
     - Write an algorithm to check whether an arbitrary binary tree is a binary search tree, assuming the tree does not contain duplicates.
