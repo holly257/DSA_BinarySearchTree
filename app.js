@@ -102,10 +102,10 @@ BST.insert(3);
 BST.insert(1);
 BST.insert(4);
 BST.insert(6);
-BST.insert(9);
+//BST.insert(9);
 BST.insert(2);
 BST.insert(5);
-BST.insert(7);
+//BST.insert(7);
 
 //letters have a numeric value. you can call in javascript
 //“A”.charCodeAt() to tell you the numeric value.
@@ -143,8 +143,8 @@ function tree(t) {
     return tree(t.left) + t.value + tree(t.right);
 }
 
-//console.log(BST);
-console.log(otherBST);
+console.log(BST);
+//console.log(otherBST);
 
 //5. Height of a BST
 function BSTHeight(tree) {
@@ -160,5 +160,66 @@ function BSTHeight(tree) {
     }
 }
 
-console.log(BSTHeight(otherBST));
-console.log(BSTHeight(BST));
+//console.log(BSTHeight(otherBST));
+//console.log(BSTHeight(BST));
+
+// 6. Is it a BST?
+//     - Write an algorithm to check whether an arbitrary binary tree is a
+//     binary search tree, assuming the tree does not contain duplicates.
+
+//BST needs:
+////left & right, no more than 2 children
+function isBST(tree) {
+    if (!tree) {
+        return false;
+    }
+
+    let answer = 'initial false';
+    if (tree) {
+        console.log(tree)
+        if (!tree.parent || !tree.right || !tree.left || !tree.value || !tree.key) {
+            answer = '1 false';
+            return answer;
+        } else if (tree.left && tree.right) {
+            if (tree.left.key > tree.right.key) {
+                answer = '2 false';
+                return answer;
+            }
+            else {
+                isBST(tree.left);
+                isBST(tree.right);
+            }
+        } else if (tree.right && tree.left === null) {
+            answer = true;
+            return answer;
+        } else {
+            isBST(tree.left);
+            isBST(tree.right);
+        }
+    }
+    return answer;
+}
+
+console.log(isBST(BST));
+
+//7. 3rd largest node
+function thirdLargestNode(tree) {
+    if (!tree) {
+        return false;
+    }
+    console.log(tree);
+
+    //only for right most branch
+    //not finished
+    if (tree.right) {
+        tree = tree.right;
+        if (tree.right) {
+            tree = tree.right;
+            if (tree.right) {
+                return tree.right;
+            }
+        }
+    }
+}
+
+//console.log(thirdLargestNode(BST))
