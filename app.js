@@ -164,43 +164,30 @@ function BSTHeight(tree) {
 //console.log(BSTHeight(BST));
 
 // 6. Is it a BST?
-//     - Write an algorithm to check whether an arbitrary binary tree is a
-//     binary search tree, assuming the tree does not contain duplicates.
-
 //BST needs:
-////left & right, no more than 2 children
-function isBST(tree) {
-    if (!tree) {
+////left subtree keys will be less than root node key
+////right subtree keys will be more than root node key
+////both subtrees must also be BST
+
+function isaValidBST(node, min = null, max = null) {
+    if (!node) return true;
+    if (max !== null && node.key >= max) {
         return false;
     }
-
-    let answer = 'initial false';
-    if (tree) {
-        console.log(tree)
-        if (!tree.parent || !tree.right || !tree.left || !tree.value || !tree.key) {
-            answer = '1 false';
-            return answer;
-        } else if (tree.left && tree.right) {
-            if (tree.left.key > tree.right.key) {
-                answer = '2 false';
-                return answer;
-            }
-            else {
-                isBST(tree.left);
-                isBST(tree.right);
-            }
-        } else if (tree.right && tree.left === null) {
-            answer = true;
-            return answer;
-        } else {
-            isBST(tree.left);
-            isBST(tree.right);
-        }
+    if (min !== null && node.key <= min) {
+        return false;
     }
-    return answer;
+    const leftSide = isaValidBST(node.left, min, node.key);
+    const rightSide = isaValidBST(node.right, node.key, max);
+
+    return leftSide && rightSide;
 }
 
-console.log(isBST(BST));
+console.log(isaValidBST(BST));
+//true
+console.log(isaValidBST(otherBST))
+//false - has duplicates
+
 
 //7. 3rd largest node
 function thirdLargestNode(tree) {
