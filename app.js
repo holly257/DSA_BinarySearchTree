@@ -143,9 +143,9 @@ function tree(t) {
     }
     return tree(t.left) + t.value + tree(t.right);
 }
-
 //console.log(BST);
 //console.log(otherBST);
+
 
 //5. Height of a BST
 function BSTHeight(tree) {
@@ -160,16 +160,15 @@ function BSTHeight(tree) {
         } else return right + 1;
     }
 }
-
 //console.log(BSTHeight(otherBST));
 //console.log(BSTHeight(BST));
+
 
 // 6. Is it a BST?
 //BST needs:
 ////left subtree keys will be less than root node key
 ////right subtree keys will be more than root node key
 ////both subtrees must also be BST
-
 function isaValidBST(node, min = null, max = null) {
     if (!node) return true;
     if (max !== null && node.key >= max) {
@@ -183,11 +182,11 @@ function isaValidBST(node, min = null, max = null) {
 
     return leftSide && rightSide;
 }
-
 //console.log(isaValidBST(BST));
 //true
 //console.log(isaValidBST(otherBST))
 //false - has duplicates
+
 
 //7. 3rd largest node
 function thirdLargestNode(tree, maxValues = []) {
@@ -205,7 +204,6 @@ function thirdLargestNode(tree, maxValues = []) {
 
     return maxValues[0];
 }
-
 //console.log(thirdLargestNode(BST));
 
 
@@ -217,10 +215,51 @@ function isBalanced(tree) {
         let left = BSTHeight(tree.left);
         let right = BSTHeight(tree.right);
 
-        if ((left - right > 1) || (left-right < -1)) {
+        if (left - right > 1 || left - right < -1) {
             return false;
         } else return true;
     }
 }
+//console.log(isBalanced(BST))
 
-console.log(isBalanced(BST))
+
+// 9. Are they the same BSTs?
+function sameBSTs(aL1, aL2) 
+    { 
+    // Base cases 
+    if (aL1.length !== aL2.length) 
+        return false; 
+    if (aL1.length === 0) 
+        return true; 
+    if (aL1[0] !== aL2[0]) 
+        return false; 
+
+    // Construct two lists from each input array. The first 
+    // list contains values smaller than first value, i.e., 
+    // left subtree. And second list contains right subtree. 
+    let aLLeft1 = []; 
+    let aLRight1 = []; 
+    let aLLeft2 = []; 
+    let aLRight2 = []; 
+
+    for (let i = 1; i < aL1.length; i++)  
+        { 
+            if (aL1[i] < aL1[0]) 
+                aLLeft1.push(aL1[i]); 
+            else
+                aLRight1.push(aL1[i]); 
+
+            if (aL2[i] < aL2[0]) 
+                aLLeft2.push(aL2[i]); 
+            else
+                aLRight2.push(aL2[i]); 
+    } 
+
+    // Recursively compare left and right subtrees. 
+    return sameBSTs(aLLeft1, aLLeft2) && sameBSTs(aLRight1, aLRight2); 
+} 
+
+console.log(sameBSTs([3, 5, 4, 6, 1, 0, 2], [3, 1, 5, 2, 4, 6, 0]));
+console.log(sameBSTs([3, 2, 5, 4, 6, 1, 0], [3, 1, 5, 2, 4, 6, 0]));
+
+//true, false
