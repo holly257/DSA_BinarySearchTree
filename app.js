@@ -101,11 +101,12 @@ let BST = new BinarySearchTree();
 BST.insert(3);
 BST.insert(1);
 BST.insert(4);
-BST.insert(6);
-//BST.insert(9);
+BST.insert(7);
+BST.insert(9);
 BST.insert(2);
 BST.insert(5);
-//BST.insert(7);
+BST.insert(6);
+BST.insert(2);
 
 //letters have a numeric value. you can call in javascript
 //“A”.charCodeAt() to tell you the numeric value.
@@ -205,4 +206,21 @@ function thirdLargestNode(tree, maxValues = []) {
     return maxValues[0];
 }
 
-console.log(thirdLargestNode(BST));
+//console.log(thirdLargestNode(BST));
+
+
+//8. Balanced BST
+function isBalanced(tree) {
+    if (!tree) {
+        return 0;
+    } else {
+        let left = BSTHeight(tree.left);
+        let right = BSTHeight(tree.right);
+
+        if ((left - right > 1) || (left-right < -1)) {
+            return false;
+        } else return true;
+    }
+}
+
+console.log(isBalanced(BST))
