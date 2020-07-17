@@ -25,14 +25,14 @@
     - Write an algorithm to find the height of a binary search tree. What is the time complexity of your algorithm?
 6. Is it a BST?
     - Write an algorithm to check whether an arbitrary binary tree is a binary search tree, assuming the tree does not contain duplicates.
-
-#### In Progress
 7. 3rd largest node
     - Write an algorithm to find the 3rd largest node in a binary search tree.
 
-#### Next
+#### In Progress
 8. Balanced BST
     - Write an algorithm that checks if a BST is balanced (i.e., a tree where no 2 leaves differ in distance from the root by more than 1).
+
+#### Next
 9. Are they the same BSTs?
     - You are given two arrays which represent two sequences of keys that are used to create two binary search trees. 
     - Write a program that will tell whether the two BSTs will be identical or not without actually constructing the tree. You may use another data structure such as an array or a linked list but don't construct the BST. 

@@ -143,7 +143,7 @@ function tree(t) {
     return tree(t.left) + t.value + tree(t.right);
 }
 
-console.log(BST);
+//console.log(BST);
 //console.log(otherBST);
 
 //5. Height of a BST
@@ -183,30 +183,26 @@ function isaValidBST(node, min = null, max = null) {
     return leftSide && rightSide;
 }
 
-console.log(isaValidBST(BST));
+//console.log(isaValidBST(BST));
 //true
-console.log(isaValidBST(otherBST))
+//console.log(isaValidBST(otherBST))
 //false - has duplicates
 
-
 //7. 3rd largest node
-function thirdLargestNode(tree) {
+function thirdLargestNode(tree, maxValues = []) {
     if (!tree) {
-        return false;
+        return '';
     }
-    console.log(tree);
 
-    //only for right most branch
-    //not finished
     if (tree.right) {
-        tree = tree.right;
-        if (tree.right) {
-            tree = tree.right;
-            if (tree.right) {
-                return tree.right;
-            }
-        }
-    }
+        maxValues.push(tree.right);
+        thirdLargestNode(tree.right, maxValues);
+    } else if (maxValues.length < 3 && tree.left) {
+        maxValues.push(tree.left);
+        thirdLargestNode(tree.left, maxValues);
+    } else return maxValues;
+
+    return maxValues[0];
 }
 
-//console.log(thirdLargestNode(BST))
+console.log(thirdLargestNode(BST));
